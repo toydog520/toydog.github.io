@@ -1008,7 +1008,7 @@
         body: JSON.stringify(payload),
       });
       sessionStorage.setItem('contractData', JSON.stringify(payload));
-      window.location.href = 'contract.html';
+      window.location.href = './signed';
     } catch (err) {
       btn.disabled = false;
       btn.textContent = '確認送出';

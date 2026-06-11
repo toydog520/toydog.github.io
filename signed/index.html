@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>愛玩犬寵物屋 — 美容住宿服務協議書</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #d6d0ca;
+    padding: 36px 0 60px;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  }
+
+  /* ── 工具列（不列印） ── */
+  .toolbar {
+    width: 794px;
+    margin: 0 auto 18px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .btn-tool {
+    background: #3a2e28;
+    color: #fff;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 2px;
+    transition: background 0.2s;
+  }
+  .btn-tool:hover { background: #5a4a3f; }
+  .btn-tool.secondary {
+    background: transparent;
+    border: 1px solid #3a2e28;
+    color: #3a2e28;
+  }
+  .btn-tool.secondary:hover { background: #e8e0d8; }
+
+  /* ── A4 頁面（固定 794px，不響應式） ── */
+  .page {
+    width: 794px;
+    background: #fff;
+    margin: 0 auto;
+    padding: 52px 60px 60px;
+    box-shadow: 0 3px 24px rgba(0,0,0,0.18);
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: #1a1a1a;
+  }
+
+  /* ── 頁首 ── */
+  .doc-header {
+    text-align: center;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #3a2e28;
+    margin-bottom: 18px;
+  }
+  .doc-header img {
+    width: 64px;
+    height: auto;
+    margin-bottom: 6px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .doc-header h1 {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 4px;
+  }
+  .doc-header .subtitle {
+    font-size: 13px;
+    color: #666;
+    letter-spacing: 2px;
+    margin-top: 3px;
+  }
+
+  /* ── 審閱期提示 ── */
+  .notice {
+    background: #fdf6ee;
+    border-left: 3px solid #c8a882;
+    padding: 7px 12px;
+    font-size: 11.5px;
+    color: #7a6050;
+    margin-bottom: 18px;
+    line-height: 1.75;
+  }
+
+  /* ── 章節標題 ── */
+  .sec-title {
+    background: #3a2e28;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 10px;
+    margin: 18px 0 10px;
+  }
+
+  /* ── 資料表格 ── */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6px;
+    font-size: 12.5px;
+  }
+  .info-table td {
+    border: 1px solid #ccc5bc;
+    padding: 5px 9px;
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  .info-table td.lbl {
+    width: 108px;
+    background: #f5f2ef;
+    color: #7a6050;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .info-table td.val { color: #1a1a1a; }
+  .info-table td.val2 { color: #1a1a1a; min-width: 100px; }
+
+  /* ── 子標題（飼主資料 / 寵物資料） ── */
+  .sub-heading {
+    font-size: 12px;
+    font-weight: 700;
+    color: #7a6050;
+    margin: 12px 0 5px;
+    padding-left: 2px;
+    border-left: 3px solid #c8a882;
+    padding-left: 6px;
+  }
+
+  /* ── 條文 ── */
+  .clause { margin-bottom: 10px; }
+  .clause-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .clause ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .clause ul li {
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+    font-size: 12px;
+    line-height: 1.75;
+    color: #2a2a2a;
+  }
+  .clause ul li::before {
+    content: "‧";
+    position: absolute;
+    left: 2px;
+    color: #c8a882;
+  }
+
+  /* ── 照片同意列 ── */
+  .consent-row {
+    border: 1px solid #ccc5bc;
+    padding: 7px 12px;
+    font-size: 12px;
+    margin-top: 8px;
+    background: #fdfcfb;
+  }
+
+  /* ── 簽署區塊 ── */
+  .sig-section {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    align-items: flex-start;
+  }
+  .sig-party { flex: 1; }
+  .sig-party-title {
+    font-size: 13px;
+    font-weight: 700;
+    border-bottom: 1px solid #3a2e28;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+  .sig-party-info {
+    font-size: 12px;
+    line-height: 2.1;
+    color: #2a2a2a;
+  }
+  .sig-img-wrap {
+    border: 1px dashed #c8a882;
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #fdfcfb;
+  }
+  .sig-img-wrap img {
+    max-width: 100%;
+    max-height: 78px;
+    object-fit: contain;
+    display: block;
+  }
+  .sig-label {
+    font-size: 11px;
+    color: #9a8c82;
+    margin-top: 3px;
+    text-align: center;
+  }
+  .sig-none {
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  /* ── 簽署日期 ── */
+  .sign-date {
+    text-align: right;
+    font-size: 13px;
+    color: #555;
+    margin-top: 22px;
+    padding-top: 12px;
+    border-top: 1px dashed #e0d8d0;
+  }
+
+  /* ── 列印設定 ── */
+  @media print {
+    body { background: none; padding: 0; margin: 0; }
+    .toolbar { display: none; }
+    .page {
+      width: 100%;
+      box-shadow: none;
+      padding: 14mm 18mm 18mm;
+      margin: 0;
+      font-size: 11.5px;
+    }
+    @page { size: A4 portrait; margin: 0; }
+    .sec-title { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sub-heading { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="btn-tool secondary" onclick="history.back()">← 返回</button>
+  <button class="btn-tool" onclick="window.print()">列印 ╱ 儲存 PDF</button>
+</div>
+
+<div class="page" id="contract-page">
+  <p style="color:#aaa;font-size:13px;text-align:center;padding:60px 0">載入中…</p>
+</div>
+
+<script>
+  function v(val, fallback) {
+    fallback = fallback !== undefined ? fallback : '—';
+    return (val !== undefined && val !== null && String(val).trim() !== '') ? String(val) : fallback;
+  }
+
+  function esc(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  const raw = sessionStorage.getItem('contractData');
+  const data = raw ? JSON.parse(raw) : {};
+
+  function rocToday() {
+    const t = new Date();
+    return `中華民國 ${t.getFullYear() - 1911} 年 ${t.getMonth() + 1} 月 ${t.getDate()} 日`;
+  }
+
+  function buildPartialRow() {
+    if (data['給付方式'] !== '部分付款') return '';
+    return `
+      <tr>
+        <td class="lbl">已給付金額</td>
+        <td class="val">${esc(v(data['已給付金額']))}</td>
+        <td class="lbl">餘款給付日期</td>
+        <td class="val2">${esc(v(data['餘款給付日期']))}</td>
+      </tr>`;
+  }
+
+  function buildSig() {
+    const img = data['簽名圖檔'];
+    if (img && img.startsWith('data:image')) {
+      return `<div class="sig-img-wrap"><img src="${img}" alt="甲方簽名"></div>`;
+    }
+    return `<div class="sig-img-wrap"><span class="sig-none">（無簽名）</span></div>`;
+  }
+
+  function diseaseStr() {
+    const d = v(data['疾病史'], '');
+    const o = v(data['其他疾病史'], '');
+    if (!d && !o) return '—';
+    if (d && o) return esc(d) + '；' + esc(o);
+    return esc(d || o);
+  }
+
+  function serviceStr() {
+    const s = v(data['服務內容'], '');
+    const o = v(data['其他服務'], '');
+    if (!s && !o) return '—';
+    if (s && o) return esc(s) + '；' + esc(o);
+    return esc(s || o);
+  }
+
+  const html = `
+    <div class="doc-header">
+      <img src="logo.jpg" alt="愛玩犬寵物屋" onerror="this.style.display='none'">
+      <h1>愛玩犬寵物屋</h1>
+      <div class="subtitle">寵物美容・住宿服務協議書</div>
+    </div>
+
+    <div class="notice">
+      本契約經甲方攜回審閱 1 日，並於充分了解條文內容後簽署。<br>
+      如於單次服務之情形，乙方已給予甲方即時、合理之審閱期間。
+    </div>
+
+    <!-- 一、基本資料 -->
+    <div class="sec-title">一、基本資料</div>
+
+    <div class="sub-heading">寵物資料</div>
+    <table class="info-table">
+      <tr>
+        <td class="lbl">寵物名</td><td class="val">${esc(v(data['寵物名']))}</td>
+        <td class="lbl">品種</td><td class="val2">${esc(v(data['品種']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">晶片號碼</td><td class="val">${esc(v(data['晶片號碼']))}</td>
+        <td class="lbl">性別</td><td class="val2">${esc(v(data['性別']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">年齡</td><td class="val">${esc(v(data['年齡']))}</td>
+        <td class="lbl">體重</td><td class="val2">${esc(v(data['體重']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">絕育情形</td><td class="val">${esc(v(data['絕育情形']))}</td>
+        <td class="lbl">目視外觀</td><td class="val2">${esc(v(data['目視外觀']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">定期疫苗接種</td><td class="val">${esc(v(data['定期疫苗']))}</td>
+        <td class="lbl">指定獸醫機構</td><td class="val2">${esc(v(data['指定獸醫機構']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">疾病史</td>
+        <td class="val" colspan="3">${diseaseStr()}</td>
+      </tr>
+      <tr>
+        <td class="lbl">寵物個性</td>
+        <td class="val" colspan="3">${esc(v(data['寵物個性']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">補充說明</td>
+        <td class="val" colspan="3">${esc(v(data['其他補充說明']))}</td>
+      </tr>
+    </table>
+
+    <div class="sub-heading">飼主資料</div>
+    <table class="info-table">
+      <tr>
+        <td class="lbl">飼主姓名</td><td class="val">${esc(v(data['飼主姓名']))}</td>
+        <td class="lbl">聯絡電話</td><td class="val2">${esc(v(data['聯絡電話']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">緊急聯絡人</td><td class="val">${esc(v(data['緊急聯絡人']))}</td>
+        <td class="lbl">緊急聯絡電話</td><td class="val2">${esc(v(data['緊急聯絡電話']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">甲方是否飼主本人</td><td class="val">${esc(v(data['甲方是否飼主本人']))}</td>
+        <td class="lbl">與飼主關係</td><td class="val2">${esc(v(data['與飼主關係']))}</td>
+      </tr>
+    </table>
+
+    <!-- 二、服務內容與費用 -->
+    <div class="sec-title">二、服務內容與費用</div>
+    <table class="info-table">
+      <tr>
+        <td class="lbl">服務開始時間</td><td class="val">${esc(v(data['服務開始時間']))}</td>
+        <td class="lbl">服務結束時間</td><td class="val2">${esc(v(data['服務結束時間']))}</td>
+      </tr>
+      <tr>
+        <td class="lbl">服務內容</td>
+        <td class="val" colspan="3">${serviceStr()}</td>
+      </tr>
+      <tr>
+        <td class="lbl">費用金額（元）</td><td class="val">${esc(v(data['費用金額']))}</td>
+        <td class="lbl">給付方式</td><td class="val2">${esc(v(data['給付方式']))}</td>
+      </tr>
+      ${buildPartialRow()}
+    </table>
+
+    <!-- 三、雙方權利與義務 -->
+    <div class="sec-title">三、雙方權利與義務</div>
+    <div class="clause">
+      <div class="clause-title">（一）甲方義務</div>
+      <ul>
+        <li>甲方應如實告知寵物健康狀況，包括是否患病、疫苗接種情況、飲食偏好、性格特點、是否懷孕、是否具有攻擊性。若因甲方隱瞞前開資訊致生損害，乙方得請求損害賠償。</li>
+        <li>幼齡或高齡寵物將個別評估管制，如經乙方評估不適合住宿╱安親╱美容，乙方將婉拒提供服務，並拒絕締結本契約。</li>
+        <li>甲方應提前準備充足之寵物糧、藥物或特殊用品，並清楚告知乙方使用方式。</li>
+        <li>寵物入館前，甲方應完成基礎清潔（如洗澡、指甲修剪）以維護公共環境衛生。</li>
+        <li>甲方應依約定時間接回寵物，逾時將依本契約規定處理。</li>
+      </ul>
+    </div>
+    <div class="clause">
+      <div class="clause-title">（二）乙方義務</div>
+      <ul>
+        <li>經雙方確認之美容服務項目，乙方應於服務完成後提供收費項目之紙本或電子明細。</li>
+        <li>乙方每次服務前應向甲方說明該次服務項目及費用，未載明及未經甲方同意之費用，不得向甲方收取。</li>
+        <li>乙方提供安全舒適的休息空間，其艙內空間應足供寵物伸展活動。</li>
+        <li>乙方應避免寵物遭受騷擾、虐待或傷害。</li>
+        <li>運輸接送寵物時，應注意食物飲水、排泄、環境安全，避免寵物遭受驚嚇或傷害。</li>
+        <li>未經甲方同意，乙方不得將寵物轉交他人或其他機構照護。</li>
+        <li>乙方應每日定時回傳寵物照片及照護情形。</li>
+      </ul>
+    </div>
+
+    <!-- 四、意外/疾病與責任歸屬 -->
+    <div class="sec-title">四、意外╱疾病與責任歸屬</div>
+    <div class="clause">
+      <ul>
+        <li>於服務期間，乙方發現寵物生理健康有異常狀況時，應立即妥善處理，嗣後並通知甲方或其指定之緊急聯絡人。</li>
+        <li>寵物有緊急就醫必要時，乙方應優先將寵物送往甲方指定之獸醫診療機構；如甲方未指定或該機構未營業，乙方應將寵物就近送往適當之獸醫診療機構。</li>
+        <li>如無指定，乙方送交<strong>北投動物醫院</strong>；夜間急診則送往<strong>布達羊急診動物醫院</strong>。</li>
+        <li>寵物死亡或生理健康異常，如係可歸責於乙方之事由所致者，乙方應負損害賠償責任。</li>
+        <li>乙方在緊急情況下代為送醫，將依公開價目表收取相對應之陪診費、交通費等相關費用。</li>
+      </ul>
+    </div>
+
+    <!-- 五、取消、退訂與逾時接回 -->
+    <div class="sec-title">五、取消、退訂與逾時接回</div>
+    <div class="clause">
+      <div class="clause-title">（一）住宿服務</div>
+      <ul>
+        <li>甲方應於預約住宿時支付新臺幣 500 元之訂金。</li>
+        <li>預定入住日前 <strong>3 日以前</strong>取消：全額退還訂金新臺幣 500 元。</li>
+        <li>預定入住日前 <strong>3 日內</strong>取消：訂金新臺幣 500 元不予退還。</li>
+        <li>寵物入住後，甲方因故終止契約：扣除已接受服務費用及訂金後，退還其餘已支付費用。</li>
+        <li>可歸責於乙方無法提供服務：扣除已接受服務費用後，退還其餘已支付費用。</li>
+        <li>甲方超過約定時間未接回寵物，將收取逾時費、違約費，依公開價目表住宿╱安親價格計算。</li>
+      </ul>
+    </div>
+    <div class="clause">
+      <div class="clause-title">（二）美容服務</div>
+      <ul>
+        <li>服務實施前解除契約：乙方不收取手續費用。</li>
+        <li>服務實施後終止：扣除已使用服務之原價單價後，退還剩餘費用（以原價計算，非包月優惠價）。</li>
+        <li>乙方未經許可變更服務地點或機構，甲方得解除或終止本契約。</li>
+        <li>服務完成後，甲方應依通知後 <strong>1 小時內</strong>接回寵物；逾時依公開價目表收取安親費用。</li>
+        <li>超過營業時間未接回：逾時費 <strong>每小時新臺幣 300 元</strong>。</li>
+        <li>甲方惡意隱瞞攻擊行為，乙方得終止契約；造成人員受傷並得請求損害賠償。</li>
+        <li>因天災事變或不可抗力因素，乙方應妥善安置寵物，必要費用核實後得請求甲方償還。</li>
+        <li>寵物因疾病、健康不佳、死亡或抗拒服務，雙方有權解除或終止，乙方不得扣除手續費。</li>
+      </ul>
+    </div>
+
+    <!-- 六、個人資料與影像使用 -->
+    <div class="sec-title">六、個人資料與影像使用</div>
+    <div class="clause">
+      <ul>
+        <li>本契約取得之個人資料，僅於服務目的之範圍內使用，並依個人資料保護法辦理。</li>
+        <li>於甲方同意且不揭露個資之前提下，乙方得於社群媒體平台分享寵物住宿或美容照片，作為品牌推廣使用。</li>
+        <li>甲方事後不同意分享，得通知乙方，乙方將依甲方之請求為停止分享、刪除等處置。</li>
+      </ul>
+    </div>
+    <div class="consent-row">
+      甲方對於乙方使用寵物照片於社群媒體推廣：
+      <strong>${data['照片同意'] === '同意' ? '☑ 同意' : '☐ 不同意'}</strong>
+    </div>
+
+    <!-- 簽署欄 -->
+    <div class="sec-title">簽署欄</div>
+    <div class="sig-section">
+      <div class="sig-party">
+        <div class="sig-party-title">甲方（寵物飼主╱代理人）</div>
+        <div class="sig-party-info">
+          姓　　名：${esc(v(data['甲方姓名']))}<br>
+          身分證號：${esc(v(data['身分證號']))}<br>
+          電　　話：${esc(v(data['電話']))}<br>
+          地　　址：${esc(v(data['地址']))}
+        </div>
+        ${buildSig()}
+        <div class="sig-label">甲方簽名</div>
+      </div>
+      <div class="sig-party">
+        <div class="sig-party-title">乙方（服務提供方）</div>
+        <div class="sig-party-info">
+          商號名稱：愛玩犬寵物屋<br>
+          負　責　人：胡嘉真<br>
+          統一編號：93185431<br>
+          特寵字號：特寵業字第V1130393號<br>
+          營業地址：臺北市北投區中正街69號1樓<br>
+          電　　話：02-28928100
+        </div>
+      </div>
+    </div>
+
+    <div class="sign-date">${rocToday()}</div>
+  `;
+
+  document.getElementById('contract-page').innerHTML = html;
+</script>
+
+</body>
+</html>
