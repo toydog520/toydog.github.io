@@ -937,7 +937,7 @@
   // ── 工具函式 ──
   function getChecked(name) {
     return [...document.querySelectorAll(`input[name="${name}"]:checked`)]
-      .map(el => el.value).join('、');
+      .map(el => el.value).join(', ');
   }
 
   function getRadio(name) {
