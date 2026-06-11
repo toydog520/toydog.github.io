@@ -25,6 +25,9 @@
     border-bottom: 1px solid #e8e0d8;
     padding: 28px 20px 20px;
     text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 200;
   }
   .header img {
     width: 100px;
@@ -48,13 +51,22 @@
   /* ── Anchor Nav ── */
   .anchor-nav {
     display: flex;
-    justify-content: center;
     gap: 6px;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 16px;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 2px 4px 6px;
+    scrollbar-width: none;
   }
+  .anchor-nav::-webkit-scrollbar { display: none; }
   .anchor-nav a {
     display: inline-block;
+    flex-shrink: 0;
+    white-space: nowrap;
     padding: 5px 16px;
     border: 1px solid #c8a882;
     border-radius: 20px;
@@ -94,6 +106,7 @@
     margin-bottom: 16px;
     overflow: hidden;
     box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    scroll-margin-top: 200px;
   }
   .section-header {
     background: #3a2e28;
@@ -368,6 +381,7 @@
     transition: background 0.2s;
   }
   .btn-submit:hover { background: #5a4a3f; }
+  .btn-submit:disabled { background: #9a8c82; cursor: not-allowed; }
 
   /* ── Company footer ── */
   .company-footer {
@@ -393,7 +407,11 @@
   <p>美容・住宿服務協議</p>
   <nav class="anchor-nav">
     <a href="#section-basic">一、基本資料</a>
+    <a href="#section-service">二、服務內容與費用</a>
     <a href="#section-rights">三、雙方權利與義務</a>
+    <a href="#section-accident">四、意外/疾病責任</a>
+    <a href="#section-cancel">五、取消與退訂</a>
+    <a href="#section-privacy">六、個資與影像</a>
     <a href="#section-sign">簽署欄</a>
   </nav>
 </div>
@@ -414,26 +432,26 @@
       <div class="row">
         <div class="field">
           <label>寵物名</label>
-          <input type="text" placeholder="請填寫">
+          <input type="text" id="pet-name" placeholder="請填寫">
         </div>
         <div class="field">
           <label>寵物品種</label>
-          <input type="text" placeholder="請填寫">
+          <input type="text" id="pet-breed" placeholder="請填寫">
         </div>
         <div class="field">
           <label>晶片號碼</label>
-          <input type="text" placeholder="請填寫">
+          <input type="text" id="pet-chip" placeholder="請填寫">
         </div>
       </div>
 
       <div class="row">
         <div class="field">
           <label>寵物年齡</label>
-          <input type="text" placeholder="例：2歲">
+          <input type="text" id="pet-age" placeholder="例：2歲">
         </div>
         <div class="field">
           <label>寵物體重</label>
-          <input type="text" placeholder="例：5kg">
+          <input type="text" id="pet-weight" placeholder="例：5kg">
         </div>
       </div>
 
@@ -474,29 +492,29 @@
       <div class="check-group">
         <label class="group-label">疾病史（可複選）</label>
         <div class="check-items">
-          <label><input type="checkbox"> 心臟病</label>
-          <label><input type="checkbox"> 癲癇</label>
-          <label><input type="checkbox"> 氣喘</label>
-          <label><input type="checkbox"> 氣管塌陷</label>
-          <label><input type="checkbox"> 白內障</label>
-          <label><input type="checkbox"> 心絲蟲</label>
-          <label><input type="checkbox"> 手術傷口</label>
-          <label><input type="checkbox"> 關節問題</label>
-          <label><input type="checkbox"> 血便</label>
-          <label><input type="checkbox"> 血尿</label>
-          <label><input type="checkbox"> 懷孕</label>
-          <label><input type="checkbox"> 傳染性疾病</label>
-          <label><input type="checkbox"> 骨折</label>
-          <label><input type="checkbox"> 腹積水</label>
-          <label><input type="checkbox"> 腹膜炎</label>
-          <label><input type="checkbox"> 腦炎</label>
-          <label><input type="checkbox"> 外傷</label>
-          <label><input type="checkbox"> 無</label>
+          <label><input type="checkbox" name="disease" value="心臟病"> 心臟病</label>
+          <label><input type="checkbox" name="disease" value="癲癇"> 癲癇</label>
+          <label><input type="checkbox" name="disease" value="氣喘"> 氣喘</label>
+          <label><input type="checkbox" name="disease" value="氣管塌陷"> 氣管塌陷</label>
+          <label><input type="checkbox" name="disease" value="白內障"> 白內障</label>
+          <label><input type="checkbox" name="disease" value="心絲蟲"> 心絲蟲</label>
+          <label><input type="checkbox" name="disease" value="手術傷口"> 手術傷口</label>
+          <label><input type="checkbox" name="disease" value="關節問題"> 關節問題</label>
+          <label><input type="checkbox" name="disease" value="血便"> 血便</label>
+          <label><input type="checkbox" name="disease" value="血尿"> 血尿</label>
+          <label><input type="checkbox" name="disease" value="懷孕"> 懷孕</label>
+          <label><input type="checkbox" name="disease" value="傳染性疾病"> 傳染性疾病</label>
+          <label><input type="checkbox" name="disease" value="骨折"> 骨折</label>
+          <label><input type="checkbox" name="disease" value="腹積水"> 腹積水</label>
+          <label><input type="checkbox" name="disease" value="腹膜炎"> 腹膜炎</label>
+          <label><input type="checkbox" name="disease" value="腦炎"> 腦炎</label>
+          <label><input type="checkbox" name="disease" value="外傷"> 外傷</label>
+          <label><input type="checkbox" name="disease" value="無"> 無</label>
         </div>
         <div class="row" style="margin-top:10px">
           <div class="field">
             <label>其他疾病史</label>
-            <input type="text" placeholder="請填寫">
+            <input type="text" id="disease-other" placeholder="請填寫">
           </div>
         </div>
       </div>
@@ -504,30 +522,30 @@
       <div class="check-group">
         <label class="group-label">寵物個性（可複選）</label>
         <div class="check-items">
-          <label><input type="checkbox"> 親人</label>
-          <label><input type="checkbox"> 親狗</label>
-          <label><input type="checkbox"> 緊張</label>
-          <label><input type="checkbox"> 護食</label>
-          <label><input type="checkbox"> 護玩具</label>
-          <label><input type="checkbox"> 有攻擊性</label>
-          <label><input type="checkbox"> 咬狗</label>
-          <label><input type="checkbox"> 咬貓</label>
-          <label><input type="checkbox"> 吠叫</label>
-          <label><input type="checkbox"> 無攻擊性</label>
+          <label><input type="checkbox" name="personality" value="親人"> 親人</label>
+          <label><input type="checkbox" name="personality" value="親狗"> 親狗</label>
+          <label><input type="checkbox" name="personality" value="緊張"> 緊張</label>
+          <label><input type="checkbox" name="personality" value="護食"> 護食</label>
+          <label><input type="checkbox" name="personality" value="護玩具"> 護玩具</label>
+          <label><input type="checkbox" name="personality" value="有攻擊性"> 有攻擊性</label>
+          <label><input type="checkbox" name="personality" value="咬狗"> 咬狗</label>
+          <label><input type="checkbox" name="personality" value="咬貓"> 咬貓</label>
+          <label><input type="checkbox" name="personality" value="吠叫"> 吠叫</label>
+          <label><input type="checkbox" name="personality" value="無攻擊性"> 無攻擊性</label>
         </div>
       </div>
 
       <div class="row">
         <div class="field full">
           <label>其他補充說明</label>
-          <textarea placeholder="請填寫任何需要告知的事項"></textarea>
+          <textarea id="pet-notes" placeholder="請填寫任何需要告知的事項"></textarea>
         </div>
       </div>
 
       <div class="row">
         <div class="field full">
           <label>指定獸醫診療機構</label>
-          <input type="text" placeholder="請填寫機構名稱">
+          <input type="text" id="vet-clinic" placeholder="請填寫機構名稱">
         </div>
       </div>
 
@@ -536,22 +554,22 @@
       <div class="row">
         <div class="field">
           <label>飼主姓名</label>
-          <input type="text" placeholder="請填寫">
+          <input type="text" id="owner-name" placeholder="請填寫">
         </div>
         <div class="field">
           <label>聯絡電話</label>
-          <input type="tel" placeholder="請填寫">
+          <input type="tel" id="owner-phone" placeholder="請填寫">
         </div>
       </div>
 
       <div class="row">
         <div class="field">
           <label>緊急聯絡人</label>
-          <input type="text" placeholder="請填寫">
+          <input type="text" id="emergency-name" placeholder="請填寫">
         </div>
         <div class="field">
           <label>緊急聯絡電話</label>
-          <input type="tel" placeholder="請填寫">
+          <input type="tel" id="emergency-phone" placeholder="請填寫">
         </div>
       </div>
 
@@ -566,7 +584,7 @@
       <div class="row">
         <div class="field">
           <label>與飼主關係（非本人請填寫）</label>
-          <input type="text" placeholder="例：家人">
+          <input type="text" id="owner-relation" placeholder="例：家人">
         </div>
       </div>
 
@@ -579,7 +597,7 @@
   </div>
 
   <!-- 二、服務內容與費用 -->
-  <div class="section">
+  <div class="section" id="section-service">
     <div class="section-header">二、服務內容與費用</div>
     <div class="section-body">
 
@@ -602,15 +620,15 @@
       <div class="check-group">
         <label class="group-label">（二）服務內容（可複選）</label>
         <div class="check-items">
-          <label><input type="checkbox"> 安親</label>
-          <label><input type="checkbox"> 住宿</label>
-          <label><input type="checkbox"> 洗澡</label>
-          <label><input type="checkbox"> 剪毛</label>
+          <label><input type="checkbox" name="service" value="安親"> 安親</label>
+          <label><input type="checkbox" name="service" value="住宿"> 住宿</label>
+          <label><input type="checkbox" name="service" value="洗澡"> 洗澡</label>
+          <label><input type="checkbox" name="service" value="剪毛"> 剪毛</label>
         </div>
         <div class="row" style="margin-top:10px">
           <div class="field">
             <label>其他服務</label>
-            <input type="text" placeholder="請填寫">
+            <input type="text" id="service-other" placeholder="請填寫">
           </div>
         </div>
       </div>
@@ -622,7 +640,7 @@
         <div class="row">
           <div class="field">
             <label>金額（新台幣）</label>
-            <input type="text" placeholder="請填寫金額">
+            <input type="text" id="fee-amount" placeholder="請填寫金額">
           </div>
         </div>
         <div class="check-group" style="margin-bottom:10px">
@@ -637,11 +655,11 @@
         <div class="row" id="partial-row" style="display:none">
           <div class="field">
             <label>已給付金額（元）</label>
-            <input type="text" placeholder="請填寫">
+            <input type="text" id="fee-partial-amount" placeholder="請填寫">
           </div>
           <div class="field">
             <label>餘款約定給付日期</label>
-            <input type="text" placeholder="例：2025年6月30日">
+            <input type="text" id="fee-partial-date" placeholder="例：2025年6月30日">
           </div>
         </div>
       </div>
@@ -682,7 +700,7 @@
   </div>
 
   <!-- 四、意外/疾病與責任歸屬 -->
-  <div class="section">
+  <div class="section" id="section-accident">
     <div class="section-header">四、意外/疾病與責任歸屬</div>
     <div class="section-body contract-text">
       <ul class="sub-list">
@@ -696,7 +714,7 @@
   </div>
 
   <!-- 五、取消、退訂與逾時接回 -->
-  <div class="section">
+  <div class="section" id="section-cancel">
     <div class="section-header">五、取消、退訂與逾時接回</div>
     <div class="section-body contract-text">
 
@@ -730,7 +748,7 @@
   </div>
 
   <!-- 六、個人資料與影像使用 -->
-  <div class="section">
+  <div class="section" id="section-privacy">
     <div class="section-header">六、個人資料與影像使用</div>
     <div class="section-body contract-text">
       <ul class="sub-list">
@@ -758,21 +776,21 @@
         <div class="row">
           <div class="field">
             <label>姓名</label>
-            <input type="text" placeholder="請填寫">
+            <input type="text" id="sign-name" placeholder="請填寫">
           </div>
           <div class="field">
             <label>國民身分證號（或居留證號）</label>
-            <input type="text" placeholder="請填寫">
+            <input type="text" id="sign-id" placeholder="請填寫">
           </div>
         </div>
         <div class="row">
           <div class="field">
             <label>電話</label>
-            <input type="tel" placeholder="請填寫">
+            <input type="tel" id="sign-phone" placeholder="請填寫">
           </div>
           <div class="field">
             <label>地址</label>
-            <input type="text" placeholder="請填寫">
+            <input type="text" id="sign-address" placeholder="請填寫">
           </div>
         </div>
         <div style="margin-top:10px">
@@ -806,7 +824,7 @@
 
   <!-- Submit -->
   <div class="submit-area">
-    <button type="button" class="btn-submit" onclick="handleSubmit()">確認送出</button>
+    <button type="button" class="btn-submit" id="btn-submit" onclick="handleSubmit()">確認送出</button>
   </div>
 
 </div>
@@ -814,6 +832,9 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/zh-tw.js"></script>
 <script>
+  // ── 請將 Apps Script 部署後的網址填入此處 ──
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbynG5gsBls7A7uspHSxBtGYkIXkyj2uq90jkQMmkHPayGStOvM5o-7UDv4wv72iTmYX5g/exec';
+
   // ── ROC date auto-fill ──
   (function() {
     const today = new Date();
@@ -913,14 +934,86 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
+  // ── 工具函式 ──
+  function getChecked(name) {
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)]
+      .map(el => el.value).join('、');
+  }
+
+  function getRadio(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+
   // ── Submit ──
-  function handleSubmit() {
-    const required = document.getElementById('confirm-truth');
-    if (!required.checked) {
+  async function handleSubmit() {
+    if (!document.getElementById('confirm-truth').checked) {
       alert('請先勾選確認基本資料為事實後再送出。');
       return;
     }
-    alert('已送出！（測試版本）');
+
+    const now = new Date();
+    const rocYear = now.getFullYear() - 1911;
+    const pad = n => String(n).padStart(2, '0');
+    const timestamp = `民國${rocYear}年${now.getMonth()+1}月${now.getDate()}日 ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+    const genderMap = { male: '公', female: '母' };
+    const paymentMap = { cash: '現金', transfer: '轉帳', full: '已全額付清', partial: '部分付款' };
+
+    const payload = {
+      提交時間:       timestamp,
+      寵物名:         document.getElementById('pet-name').value,
+      品種:           document.getElementById('pet-breed').value,
+      晶片號碼:       document.getElementById('pet-chip').value,
+      年齡:           document.getElementById('pet-age').value,
+      體重:           document.getElementById('pet-weight').value,
+      性別:           genderMap[getRadio('gender')] || '',
+      絕育情形:       getRadio('neuter') === 'yes' ? '已絕育' : getRadio('neuter') === 'no' ? '未絕育' : '',
+      目視外觀:       getRadio('appearance') === 'normal' ? '正常' : getRadio('appearance') === 'abnormal' ? '異常' : '',
+      定期疫苗:       getRadio('vaccine') === 'yes' ? '是' : getRadio('vaccine') === 'no' ? '否' : '',
+      疾病史:         getChecked('disease'),
+      其他疾病史:     document.getElementById('disease-other').value,
+      寵物個性:       getChecked('personality'),
+      其他補充說明:   document.getElementById('pet-notes').value,
+      指定獸醫機構:   document.getElementById('vet-clinic').value,
+      飼主姓名:       document.getElementById('owner-name').value,
+      聯絡電話:       document.getElementById('owner-phone').value,
+      緊急聯絡人:     document.getElementById('emergency-name').value,
+      緊急聯絡電話:   document.getElementById('emergency-phone').value,
+      甲方是否飼主本人: getRadio('is_owner') === 'yes' ? '是' : getRadio('is_owner') === 'no' ? '否' : '',
+      與飼主關係:     document.getElementById('owner-relation').value,
+      服務開始時間:   document.getElementById('service-start').value,
+      服務結束時間:   document.getElementById('service-end').value,
+      服務內容:       getChecked('service'),
+      其他服務:       document.getElementById('service-other').value,
+      費用金額:       document.getElementById('fee-amount').value,
+      給付方式:       paymentMap[getRadio('payment')] || '',
+      已給付金額:     document.getElementById('fee-partial-amount').value,
+      餘款給付日期:   document.getElementById('fee-partial-date').value,
+      照片同意:       document.getElementById('photo-consent').checked ? '同意' : '不同意',
+      甲方姓名:       document.getElementById('sign-name').value,
+      身分證號:       document.getElementById('sign-id').value,
+      電話:           document.getElementById('sign-phone').value,
+      地址:           document.getElementById('sign-address').value,
+      簽名圖檔:       canvas.toDataURL('image/png'),
+    };
+
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.textContent = '送出中…';
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+      btn.textContent = '✓ 已送出';
+      alert('協議已成功送出，感謝您！');
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = '確認送出';
+      alert('送出失敗，請確認網路連線後再試。');
+    }
   }
 </script>
 
